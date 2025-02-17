@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
-	@State var habits = HabitViewModel()
+	@State var habitsViewModel = HabitViewModel()
 
 	@State private var showAddHabitView: Bool = false
 
     var body: some View {
 		NavigationStack {
 			List {
-				ForEach(habits.habits) { habit in
+				ForEach(habitsViewModel.habits) { habit in
 					NavigationLink (destination: {
-						EditView(name: habit.name, description: habit.description, timesDone: habit.timesDone)
+						EditView(habitsViewModel: habitsViewModel, habitItem: habit, name: habit.name, description: habit.description, timesDone: habit.timesDone)
 					}, label: {
 						HabitItemView(habit: habit)
 					})
@@ -34,13 +34,13 @@ struct ContentView: View {
 				}
 			}
 			.popover(isPresented: $showAddHabitView) {
-				AddHabitView(habits: habits)
+				AddHabitView(habits: habitsViewModel)
 			}
 		}
     }
 
 	func removeItems(at offsets: IndexSet) {
-		habits.habits.remove(atOffsets: offsets)
+		habitsViewModel.habits.remove(atOffsets: offsets)
 	}
 }
 

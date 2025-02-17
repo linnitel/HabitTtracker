@@ -9,7 +9,7 @@ import SwiftUI
 
 @Observable
 class HabitViewModel {
-	@Published var habits = [HabitModel]() {
+	var habits = [HabitModel]() {
 		didSet {
 			if let encoded = try? JSONEncoder().encode(habits) {
 				UserDefaults.standard.set(encoded, forKey: "habits")
