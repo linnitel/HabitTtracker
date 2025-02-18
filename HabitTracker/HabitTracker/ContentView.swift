@@ -17,7 +17,7 @@ struct ContentView: View {
 			List {
 				ForEach($habitsViewModel.habits) { $habit in
 					NavigationLink (destination: {
-						EditView(habitsViewModel: habitsViewModel, habit: $habit)
+						EditView(habit: $habit)
 					}, label: {
 						HabitItemView(habit: habit)
 					})

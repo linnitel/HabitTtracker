@@ -10,7 +10,6 @@ import SwiftUI
 struct EditView: View {
 	@Environment(\.dismiss) var dismiss
 
-	var habitsViewModel: HabitViewModel
 	@Binding var habit: HabitModel
 
     var body: some View {
@@ -30,9 +29,6 @@ struct EditView: View {
 		.toolbar {
 			ToolbarItem(placement: .topBarTrailing) {
 				Button("Save") {
-//					let habit = HabitModel(name: name, description: description, timesDone: timesDone)
-//					habitsViewModel.increaseTimesDone(for: habit)
-
 					dismiss()
 				}
 			}
@@ -42,5 +38,5 @@ struct EditView: View {
 }
 
 #Preview {
-	EditView(habitsViewModel: HabitViewModel(), habit: .constant(HabitModel(name: "Tiansdf", description: "Desdlkjsfl")))
+	EditView(habit: .constant(HabitModel(name: "Tiansdf", description: "Desdlkjsfl")))
 }
