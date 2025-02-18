@@ -11,31 +11,27 @@ struct EditView: View {
 	@Environment(\.dismiss) var dismiss
 
 	var habitsViewModel: HabitViewModel
-	var habitItem: HabitModel
-
-	@State var name: String
-	@State var description: String
-	@State var timesDone: Int
+	@Binding var habit: HabitModel
 
     var body: some View {
 		List {
 			HStack {
-				Text("Times done: \(timesDone)")
+				Text("Times done: \(habit.timesDone)")
 				Spacer()
 				Button("+") {
-					timesDone += 1
+					habit.timesDone += 1
 				}
 			}
-			TextField("Title", text: $name)
+			TextField("Title", text: $habit.name)
 				.font(.largeTitle)
-			TextField("Description", text: $description)
+			TextField("Description", text: $habit.description)
 				.frame(minHeight: 80, alignment: .top)
 		}
 		.toolbar {
 			ToolbarItem(placement: .topBarTrailing) {
 				Button("Save") {
-					let habit = HabitModel(name: name, description: description, timesDone: timesDone)
-					habitsViewModel.increaseTimesDone(for: habit)
+//					let habit = HabitModel(name: name, description: description, timesDone: timesDone)
+//					habitsViewModel.increaseTimesDone(for: habit)
 
 					dismiss()
 				}
@@ -46,5 +42,5 @@ struct EditView: View {
 }
 
 #Preview {
-	EditView(habitsViewModel: HabitViewModel(), habitItem: HabitModel(name: "Title", description: "Description", timesDone: 0), name: "Title", description: "Description", timesDone: 0)
+	EditView(habitsViewModel: HabitViewModel(), habit: .constant(HabitModel(name: "Tiansdf", description: "Desdlkjsfl")))
 }
